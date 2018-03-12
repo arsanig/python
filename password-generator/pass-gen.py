@@ -1,9 +1,14 @@
-import random
-import string
+from random import choice, randint
+from string import ascii_letters, digits
 
-length = int(input("How many characters do you want in your password? (minimum 6, maximum 254)\n"))
+char = ascii_letters + digits
 
-char = string.ascii_letters + string.digits
-password = ''.join(random.choice(char) for _ in range (length))
+length = int(input("How many characters do you want in your password? (minimum 6, maximum 254) "))
+specialChar = input("Need a special character? [y or n] ")
 
-print("\n"+password)
+password = "".join(choice(char) for _ in range (length))
+
+if (specialChar == "y"):
+	print("\n"+password.replace(password[randint(0, len(password)-1)], "!"))
+else:
+	print("\n"+password)
